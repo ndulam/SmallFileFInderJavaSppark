@@ -49,7 +49,11 @@ public class SampleSpark {
 				
 		return struct;		
 	}
-	
+	Row jobRow = RowFactory.create("","");
+				List<Row> RowList= new ArrayList<Row>();
+		RowList.add(jobRow);	
+		JavaRDD<Row> rowRDD = jsc.parallelize(jobRowList);
+		Dataset<Row> jobDS = sqlContext.createDataFrame(rowRDD, struct).toDF();
 	}
 
 }

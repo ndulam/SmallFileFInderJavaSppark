@@ -28,6 +28,13 @@ public class SampleSpark {
 		float fileNum = dirSize/(512 * 1024 * 1024) ;
 		System.out.print("File Number os "+ fileNum);
 		
+				SparkConf sparkConf = new SparkConf();
+		sparkConf.setAppName("MDM");
+		sparkConf.set("deploy-mode", "client");
+		sparkConf.set("hive.exec.dynamic.partition.mode", "nonstrict");	
+		sparkConf.set("hive.exec.dynamic.partition","true");
+		sparkConf.set("spark.sql.crossJoin.enabled", "true");
+		SparkSession sparkSession = SparkSession.builder().config(sparkConf).enableHiveSupport().getOrCreate();	
 	}
 
 }

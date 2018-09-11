@@ -35,6 +35,21 @@ public class SampleSpark {
 		sparkConf.set("hive.exec.dynamic.partition","true");
 		sparkConf.set("spark.sql.crossJoin.enabled", "true");
 		SparkSession sparkSession = SparkSession.builder().config(sparkConf).enableHiveSupport().getOrCreate();	
+		
+		private static StructType getStructType()
+	{
+
+		List<StructField> fields = new ArrayList<>();
+		fields.add(DataTypes.createStructField("A", DataTypes.IntegerType, false));
+		fields.add(DataTypes.createStructField("B", DataTypes.StringType, true));
+		fields.add(DataTypes.createStructField("C", DataTypes.StringType, true));
+		fields.add(DataTypes.createStructField("D", DataTypes.StringType, true));
+		fields.add(DataTypes.createStructField("E", DataTypes.StringType, true));
+			StructType struct = DataTypes.createStructType(fields);
+				
+		return struct;		
+	}
+	
 	}
 
 }
